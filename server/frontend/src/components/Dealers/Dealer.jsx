@@ -40,9 +40,11 @@ const Dealer = () => {
     const res = await fetch(reviews_url, {
       method: "GET"
     });
+    console.log(res)
     const retobj = await res.json();
     
     if(retobj.status === 200) {
+      console.log(retobj.reviews)
       if(retobj.reviews.length > 0){
         setReviews(retobj.reviews)
       } else {
@@ -61,8 +63,6 @@ const Dealer = () => {
     get_reviews();
     if(sessionStorage.getItem("username")) {
       setPostReview(<a href={post_review}><img src={review_icon} style={{width:'10%',marginLeft:'10px',marginTop:'10px'}} alt='Post Review'/></a>)
-
-      
     }
   },[]);  
 
@@ -80,7 +80,7 @@ return(
       ):  unreviewed === true? <div>No reviews yet! </div> :
       reviews.map(review => (
         <div className='review_panel'>
-          <img src={senti_icon(review.sentiment)} className="emotion_icon" alt='Sentiment'/>
+          {/* <img src={senti_icon(review.sentiment)} className="emotion_icon" alt='Sentiment'/> */}
           <div className='review'>{review.review}</div>
           <div className="reviewer">{review.name} {review.car_make} {review.car_model} {review.car_year}</div>
         </div>
