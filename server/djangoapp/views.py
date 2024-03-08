@@ -113,7 +113,7 @@ def get_dealer_details(request, dealer_id):
 
 def get_dealer_reviews(request, dealer_id):
     if (dealer_id):
-        endpoint = "/fetchReviews/"+str(dealer_id)
+        endpoint = "/fetchReviews/dealer/"+str(dealer_id)
         reviews = get_request(endpoint)
         return JsonResponse({"status": 200, "reviews": reviews})
     else:
